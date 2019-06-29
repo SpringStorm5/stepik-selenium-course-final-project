@@ -1,11 +1,10 @@
+import math
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import math
 from .locators import BasePageLocators
-from .login_page import LoginPage
 
 
 class BasePage(object):
@@ -55,17 +54,16 @@ class BasePage(object):
         return True
 
     def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK_INVALID)
-        link.click()
-
-    def go_to_login_page2(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
-
-    def go_to_login_page3(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        link.click()
-        return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def go_to_cart_page(self):
+        link = self.browser.find_element(*BasePageLocators.VIEW_CART_BUTTON)
+        link.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented,"\
+                                                                     " probably unauthorised user"

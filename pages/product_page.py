@@ -21,9 +21,9 @@ class ProductPage(BasePage):
             .format(product_price, cart_total_price)
 
     def check_adding_message_not_present(self):
-        (how, what) = ProductPageLocators.INFO_MESSAGE_PRODUCT_NAME
-        assert self.is_not_element_present(how, what), "Product adding message must be absent"
+        assert self.is_not_element_present(*ProductPageLocators.INFO_MESSAGE_PRODUCT_NAME), \
+            "Product adding message must be absent"
 
     def check_adding_message_is_disappeared(self):
-        (how, what) = ProductPageLocators.INFO_MESSAGE_PRODUCT_NAME
-        assert self.is_disappeared(how, what), "Product adding message must be disappeared"
+        assert self.is_disappeared(*ProductPageLocators.INFO_MESSAGE_PRODUCT_NAME), \
+            "Product adding message must be disappeared"
